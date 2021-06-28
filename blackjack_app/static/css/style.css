@@ -1,0 +1,60 @@
+.container {
+    width: 960px;
+    height: 650px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    height: 120px;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+    .header h1 {
+        border: 1px solid black;
+        padding: 15px;
+        border-radius: 15px;
+    }
+    .header h3 {
+        border: 1px solid black;
+        padding: 20px 15px 15px 15px;
+        border-radius: 15px;
+    }
+.main_content {
+    width: 640px;
+    height: 450px;
+    display: inline-block;
+    padding: 15px;
+    margin-right: 10px;
+    vertical-align: top;
+}
+
+    .dealer_hand {
+        width: 610px;
+        height: 210px;
+        border: 1px solid black;
+        padding: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .your_hand {
+        width: 610px;
+        height: 210px;
+        border: 1px solid black;
+        padding: 10px;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+.prob_bar {
+    width: 250px;
+    height: 450px;
+    margin: 10px;
+    display: inline-block;
+    vertical-align: bottom;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid black;
+}
