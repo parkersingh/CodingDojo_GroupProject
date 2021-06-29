@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    
 </head>
 <body>
     <div class='container'>
@@ -18,14 +19,28 @@
         <div class='main_content'>
             <div class='dealer_hand'>
                 <h3>Dealer Hand</h2>
+                <div class="cards">
+                    <p id="first-dealer-card"></p>
+                    <p id="second-dealer-card"></p>
+                </div>
             </div>
             <div class='your_hand'>
                 <h3>Your Hand</h2>
+                <div id="user" class="cards">
+                    <p id="first-user-card"></p>
+                    <p id="second-user-card"></p>
+                    
+                </div>
+                <button id="hit">Hit</button>
+                <button id="stand">Stand</button>
             </div>
+            <button id="play">Let's Play</button>
         </div>
         <div class='prob_bar'>
             <h4>Probabilities</h4>
         </div>
+
     </div>
+    <script type="text/javascript" src="{% static 'js/index.js' %}"></script>
 </body>
 </html>

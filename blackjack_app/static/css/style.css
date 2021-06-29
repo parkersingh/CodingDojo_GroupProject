@@ -58,3 +58,22 @@
     text-align: center;
     border: 1px solid black;
 }
+
+.cards{
+    margin: auto;
+    display: flex;
+    width: 80%;
+    justify-content: center;
+    
+}
+
+    .cards p{
+        display: inline-block;
+        border: 2px solid black;
+        width: 15%;
+        height: 80px;
+        vertical-align: middle;
+        margin: 10px;
+        padding-top: 20px;
+        font-size: 25px;
+    }
