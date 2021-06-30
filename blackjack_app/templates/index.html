@@ -20,8 +20,9 @@
             <div class='dealer_hand'>
                 <h3>Dealer Hand</h2>
                 <div class="cards">
-                    <p id="first-dealer-card"></p>
-                    <p id="second-dealer-card"></p>
+                    {% for card in last_game.comp_cards %}
+                    <p>{{card}}</p>
+                    {% endfor %}
                 </div>
             </div>
             <div class='your_hand'>
@@ -29,7 +30,7 @@
                 <div id="user" class="cards">
                     {% for card in last_game.user_cards %}
                     <p>{{card}}</p>
-                    {% end for %}
+                    {% endfor %}
                     
                 </div>
                 <button id="hit">Hit</button>

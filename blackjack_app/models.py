@@ -8,8 +8,7 @@ class Game(models.Model):
     comp_cards=[]
 
     def shuffle(self,deck):
-        self.deck = random.shuffle(deck)
-        return
+        random.shuffle(self.deck)
     def hit(self):
         card=self.deck.pop()
         self.user_cards.append(card)
