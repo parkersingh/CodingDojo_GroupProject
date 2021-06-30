@@ -24,7 +24,7 @@ def check_sum(reqeust):
     else:
         return HttpResponse('Return back to game')
 
-def cpu_turn(request):
+def cpu_hit(request):
     game = Blackjack.objects.last()
     cpu_sum = game.cpu_sum()
     if cpu_sum > 21:
