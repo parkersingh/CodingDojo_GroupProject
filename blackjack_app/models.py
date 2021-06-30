@@ -24,12 +24,6 @@ class DeckManager(models.Manager):
         
         return self
     
-    def full_deck(card_counter, num_decks):
-        num_cards = 0
-        for x in card_counter.values():
-            num_cards += x
-        return num_cards <= 52*num_decks
-    
 # Card class to store info of each individual playing card
 class Card(models.Model):
     # CARD_SUITS = (('D', 'Diamond'),
