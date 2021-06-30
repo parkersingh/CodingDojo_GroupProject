@@ -32,3 +32,8 @@ def create(request):
         new_game.comp_cards.append(first_card_comp)
         new_game.comp_cards.append(second_card_comp)
     return redirect('/')
+
+def hit(request):
+    current_game = Game.objects.last()
+    current_game.hit()
+    return redirect('/')
