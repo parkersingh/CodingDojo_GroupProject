@@ -14,15 +14,8 @@ def create(request):
         new_game = Game.objects.create(
             num_decks=request.POST['number']
         )
-        print(new_game.deck)
-        print(int(request.POST['number']))
         new_game.deck = new_game.deck * 4 * int(request.POST['number'])
-        print(new_game.deck)
         new_game.shuffle(new_game.deck)
-        
-        print(new_game.deck)
-        print(new_game.deck)
-
         first_card_user=new_game.deck.pop()
         second_card_user=new_game.deck.pop()
         first_card_comp=new_game.deck.pop()
@@ -35,5 +28,17 @@ def create(request):
 
 def hit(request):
     current_game = Game.objects.last()
-    current_game.hit()
+    sum=0
+    for card in current_game.user_cards:
+        if card == 'J'or card =='Q'or card =='K':
+            sum+=10
+        elif card == 'A':
+            if sum > 10:
+                sum+=1
+            else:
+                sum+=11
+        else:
+            sum+=card
+    if sum < 21:
+        current_game.hit()
     return redirect('/')
