@@ -4,44 +4,72 @@ import math, random
 from django.db.models.expressions import Value
 # Create your models here.
 
-class DeckManager(models.Manager):
-# Check to see if deck is full
+# Card class to store info of each individual playing card
+class Blackjack(models.Model):
+    num_decks = models.IntegerField()
+    deck = []
+    player_hand = []
+    cpu_hand = []
 
-    # Create new deck based off number of decks given
-    def create_deck(self, num_decks):
-        for num in range(0, num_decks):
-            for val in range(1, 11):
+    def create_deck(self):
+        new_deck = []
+        for num in range(0, self.num_decks):
+            for val in range(1, 14):
                 for count in range(0, 4):
-                    new_card = Card.objects.create(face= f'{val}', value= val)
-                    self.cards_in_deck.append(new_card)
-                if val == 10:
-                    for suit in 'KQJ':
-                        for i in range(0, 4):
-                            face_card = Card.objects.create(face= f'{suit}', value= val)
-                            self.cards_in_deck.append(face_card)
-
-        random.shuffle(self.cards_in_deck)
-        
+                    if val == 1:
+                        new_deck.append('A')
+                    elif val == 11:
+                        new_deck.append('J')
+                    elif val == 12:
+                        new_deck.append('Q')
+                    elif val == 13:
+                        new_deck.append('K')
+                    else:
+                        new_deck.append(val)
+        random.shuffle(new_deck)
+        return new_deck
+    
+    def add_player_hand(self):
+        self.player_hand.append(self.deck.pop(0))
         return self
     
-# Card class to store info of each individual playing card
-class Card(models.Model):
-    # CARD_SUITS = (('D', 'Diamond'),
-    # ('C', 'Clubs'),
-    # ('H,', 'Hearts'),
-    # ('S', 'Spades'))
-    # suit = models.CharField(max_length= 1, choices= CARD_SUITS)
+    def add_player_hand(self):
+        self.player_hand.append(self.deck.pop(0))
+        return self
+    
+    def player_total(self):
+        total = 0
+        for card in self.player_hand:
+            if card == 'A':
+                pass
+            elif card == 'J' or card == 'Q' or card == 'K':
+                total += 10
+            else:
+                total += card
+        if 'A' in self.player_hand:
+            if total + 11 > 21:
+                total += 1
+            else:
+                total += 11
+        return total
+    
+    def cpu_total(self):
+        total = 0
+        for card in self.cpu_hand:
+            if card == 'A':
+                pass
+            elif card == 'J' or card == 'Q' or card == 'K':
+                total += 10
+            else:
+                total += card
+        if 'A' in self.cpu_hand:
+            if total + 11 > 21:
+                total += 1
+            else:
+                total += 11
+        return total
 
-    face = models.CharField(max_length= 10)
-    value = models.IntegerField()
 
-# Player class to handle the cards a user and the computer has
-class Player(models.Model):
-    cards_in_hand = []
-    name = models.CharField(max_length= 50)
+    
 
-#Create and shuffle cards needed for a game depending on the number of decks used
-class Deck(models.Model):
-    num_decks = models.IntegerField()
-    cards_in_deck = []
-    objects = DeckManager()
+
