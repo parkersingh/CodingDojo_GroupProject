@@ -33,11 +33,11 @@ class Blackjack(models.Model):
         self.player_hand.append(self.deck.pop(0))
         return self
     
-    def add_player_hand(self):
-        self.player_hand.append(self.deck.pop(0))
+    def add_cpu_hand(self):
+        self.cpu_hand.append(self.deck.pop(0))
         return self
     
-    def player_total(self):
+    def player_sum(self):
         total = 0
         for card in self.player_hand:
             if card == 'A':
@@ -53,7 +53,7 @@ class Blackjack(models.Model):
                 total += 11
         return total
     
-    def cpu_total(self):
+    def cpu_sum(self):
         total = 0
         for card in self.cpu_hand:
             if card == 'A':
