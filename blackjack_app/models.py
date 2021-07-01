@@ -12,3 +12,36 @@ class Game(models.Model):
     def hit(self):
         card=self.deck.pop()
         self.user_cards.append(card)
+    
+    def user_sum(self):
+        sum = 0
+        for card in self.user_cards:
+            if card == 'A':
+                pass
+            elif card == 'J' or card == 'Q' or card == 'K':
+                sum += 10
+            else:
+                sum += card
+        if 'A' in self.user_cards:
+            if sum + 11 > 21:
+                sum += 1
+            else:
+                sum += 11
+        return sum
+    
+    def comp_sum(self):
+        sum = 0
+        for card in self.comp_cards:
+            if card == 'A':
+                pass
+            elif card == 'J' or card == 'Q' or card == 'K':
+                sum += 10
+            else:
+                sum += card
+        if 'A' in self.comp_cards:
+            if sum + 11 > 21:
+                sum += 1
+            else:
+                sum += 11
+        return sum
+
