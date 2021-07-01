@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +10,6 @@
     {% load static %}
     <link href="{% static 'assets/css/material-kit.css' %}" rel="stylesheet" />
     <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 
 </head>
 
@@ -30,46 +26,55 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/">Blackjack Helper<span
-                                class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Blackjack Helper</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/tutorial">How to Play</a>
+                        <a class="nav-link" href="/tutorial">How to Play<span
+                            class="sr-only">(current)</span></a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
     <div class='main_content'>
-        <div class='dealer_hand'>
-            <h3>Dealer Hand</h2>
-                <div class="cards">
-                    <!-- {% for card in last_game.comp_cards %}
-                    <p>{{card}}</p>
-                    {% endfor %} -->
-                </div>
+        <div class="container">
+            <h1>How to Play Blackjack</h1>
+            <div id="objective">
+            <h3>Objective</h3>
+            <p>Gather a sum of cards that is higher than the sum of the dealer's cards without going over 21.</p>
+            </div>
+            <div id="rule">
+            <h3>Rules</h3>
+            <ul>
+                <li>Player and dealer are both dealt 2 cards each. One of the dealer's cards is placed face down.</li>
+                <li>Player then has the option to "Hit" or "Stand". If player decides to "Hit" another card is given to the player.</li>
+                <li>Player can "Hit" as many times as they want, so long as the sum of their cards is not over 21.</li>
+                <li>If the sum of the player's cards is over 21, player "Busts" and the game is over.</li>
+                <li>Once player "Stands" the dealer will play their cards until the dealer "Stands" or "Busts".</li>
+                <li>Player and dealer will then compare hands and the person with highest sum wins.</li>
+                <li>If both player and dealer reach 21 the game is tied.</li>
+                <li>Player can obtain a "Blackjack" by having a hand that comprises of an Ace and a card that has a value of 10.</li>
+            </ul>
+            </div>
+            <div id="card-values">
+            <h3>Card Values</h3>
+            <ul>
+                <li>Number cards 2-10 are value on the card.</li>
+                <li>Jack, Queen, King are all valued at 10.</li>
+                <li>Ace can either be 1 or 11. Whichever is more advantageous.</li>
+            </ul>
+            </div>
+            <br>
+            <div id="play-game">
+                <h3>You've read the rules, now let's play!</h3>
+                <form action="create" method="POST">
+                    {% csrf_token %}
+                    <label for="number">Number of Decks:</label>
+                    <input type="text" id="number" name='number'>
+                    <input type="submit" value="Let's Play">
+                </form>
+            </div>
         </div>
-        <div class='your_hand'>
-            <h3>Your Hand</h2>
-                <!-- <div id="user" class="cards">
-                    {% for card in last_game.user_cards %}
-                    <p>{{card}}</p>
-                    {% endfor %} -->
-
-                </div>
-                <!-- <button id="hit"><a href="hit">Hit</a></button>
-                <button id="stand">Stand</button> -->
-        </div>
-        <form action="create" method="POST">
-            {% csrf_token %}
-            <label for="number">Number of Decks:</label>
-            <input type="text" id="number" name='number'>
-            <input type="submit" value="Let's Play">
-        </form>
-
-    </div>
-    <div class='prob_bar'>
-        <h4>Probabilities</h4>
     </div>
 
     <!--script type="text/javascript" src="{% static 'js/index.js' %}"></script-->
