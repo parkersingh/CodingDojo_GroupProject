@@ -6,6 +6,9 @@ from .models import Blackjack
 def index(request):
     return render(request, 'index.html')
 
+def tutorial(request):
+    return render(request, 'tutorial.html')
+
 def game(request):
     context={
         'last_game':Blackjack.objects.last()
