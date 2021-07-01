@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blackjack Helper</title>
-    <link rel="stylesheet" type="text/css"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blackjack Helper</title>
+        <link rel="stylesheet" type="text/css"
+            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+        
+        {% load static %}
+        <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
+        <link href="{% static 'assets/css/material-kit.css?v=2.0.4' %}" rel="stylesheet" />
+        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     
-    {% load static %}
-    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
-    <link href="{% static 'assets/css/material-kit.css?v=2.0.4' %}" rel="stylesheet" />
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
-
-</head>
+    </head>
 
 <body>
     <nav class="navbar navbar-expand-lg bg-primary">
@@ -44,21 +44,21 @@
         <div class='dealer_hand'>
             <h3>Dealer Hand</h2>
                 <div class="cards">
-                    <!-- {% for card in last_game.comp_cards %}
+                    {% for card in last_game.comp_cards %}
                     <p>{{card}}</p>
-                    {% endfor %} -->
+                    {% endfor %}
                 </div>
         </div>
         <div class='your_hand'>
             <h3>Your Hand</h2>
-                <!-- <div id="user" class="cards">
+                <div id="user" class="cards">
                     {% for card in last_game.user_cards %}
                     <p>{{card}}</p>
-                    {% endfor %} -->
+                    {% endfor %}
 
                 </div>
-                <!-- <button id="hit"><a href="hit">Hit</a></button>
-                <button id="stand">Stand</button> -->
+                <button id="hit"><a href="hit">Hit</a></button>
+                <button id="stand">Stand</button>
         </div>
         <form action="create" method="POST">
             {% csrf_token %}

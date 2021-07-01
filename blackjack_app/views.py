@@ -1,17 +1,20 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import Game
+from .models import Blackjack
 
 
 #Create your views here.
 def index(request):
+    return render(request, 'index.html')
+
+def game(request):
     context={
-        'last_game':Game.objects.last()
+        'last_game':Blackjack.objects.last()
     }
-    return render(request, 'index.html', context)
+    return render(request, 'game.html', context)
 
 def create(request):
     if request.method == 'POST':
-        new_game = Game.objects.create(
+        new_game = Blackjack.objects.create(
             num_decks=request.POST['number']
         )
         new_game.deck = new_game.deck * 4 * int(request.POST['number'])
@@ -24,10 +27,10 @@ def create(request):
         new_game.user_cards.append(second_card_user)
         new_game.comp_cards.append(first_card_comp)
         new_game.comp_cards.append(second_card_comp)
-    return redirect('/')
+    return redirect('/game')
 
 def hit(request):
-    current_game = Game.objects.last()
+    current_game = Blackjack.objects.last()
     sum=0
     for card in current_game.user_cards:
         if card == 'J'or card =='Q'or card =='K':
@@ -41,4 +44,4 @@ def hit(request):
             sum+=card
     if sum < 21:
         current_game.hit()
-    return redirect('/')
+    return redirect('/game')

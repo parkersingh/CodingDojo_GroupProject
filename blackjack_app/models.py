@@ -1,7 +1,7 @@
 from django.db import models
 import random
 # Create your models here.
-class Game(models.Model):
+class Blackjack(models.Model):
     num_decks = models.IntegerField()
     deck = [2,3,4,5,6,7,8,9,10,'J','Q','K','A']
     user_cards=[]
@@ -44,4 +44,3 @@ class Game(models.Model):
             else:
                 sum += 11
         return sum
-
