@@ -11,8 +11,9 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
         
         {% load static %}
-        <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"> -->
-        <link href="{% static 'assets/css/material-kit.css?v=2.0.4' %}" rel="stylesheet" />
+        
+        <link href="{% static 'assets/css/material-kit.css' %}" rel="stylesheet" />
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"> 
         <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     
     </head>
@@ -58,7 +59,7 @@
 
                 </div>
                 <button id="hit"><a href="hit">Hit</a></button>
-                <button id="stand">Stand</button>
+                <button id="stand"><a href="stand">Stand</a></button>
         </div>
         <form action="create" method="POST">
             {% csrf_token %}
@@ -70,6 +71,8 @@
     </div>
     <div class='prob_bar'>
         <h4>Probabilities</h4>
+        <p id="d-sum">Computer Sum: {{last_game.comp_sum}}</p>
+        <p id="d-sum">Player Sum: {{last_game.user_sum}}</p>
     </div>
 
     <!--script type="text/javascript" src="{% static 'js/index.js' %}"></script-->
