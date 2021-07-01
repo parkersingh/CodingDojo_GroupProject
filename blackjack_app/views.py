@@ -30,9 +30,12 @@ def game(request):
 
 def create(request):
     if request.method == 'POST':
+        Blackjack.user_cards=[]
+        Blackjack.comp_cards=[]
         new_game = Blackjack.objects.create(
             num_decks=request.POST['number']
         )
+        
         new_game.deck = new_game.deck * 4 * int(request.POST['number'])
         new_game.shuffle(new_game.deck)
         first_card_user=new_game.deck.pop()
@@ -60,4 +63,19 @@ def hit(request):
             sum+=card
     if sum < 21:
         current_game.hit()
+    if sum > 21:
+        return HttpResponse('Bust, CPU Wins!')
+    return redirect('/game')
+
+def stand(request):
+    current_game=Blackjack.objects.last()
+    if current_game.user_sum() > 21:
+        return HttpResponse('CPU Won!')
+    elif current_game.user_sum() > current_game.comp_sum():
+        while current_game.user_sum() > current_game.comp_sum():
+            current_game.comp_hit()
+        if current_game.comp_sum() <=21:
+            return HttpResponse('CPU Wins!')
+        else:
+            return HttpResponse('Player Wins!')
     return redirect('/game')

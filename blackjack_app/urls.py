@@ -9,4 +9,6 @@ urlpatterns = [
     path('tutorial', views.tutorial),
     path('age_check', views.age_check),
     path('validate_age', views.validate_age),
+    path('hit',views.hit),
+    path('stand', views.stand)
 ]

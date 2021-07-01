@@ -1,17 +1,21 @@
 from django.db import models
 import random
 # Create your models here.
-class Blackjack(models.Model):
+class Blackjack(models.Model): 
     num_decks = models.IntegerField()
     deck = [2,3,4,5,6,7,8,9,10,'J','Q','K','A']
     user_cards=[]
     comp_cards=[]
-
+        
+    
     def shuffle(self,deck):
         random.shuffle(self.deck)
     def hit(self):
         card=self.deck.pop()
         self.user_cards.append(card)
+    def comp_hit(self):
+        card=self.deck.pop()
+        self.comp_cards.append(card)
     
     def user_sum(self):
         sum = 0
