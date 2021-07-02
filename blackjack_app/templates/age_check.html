@@ -32,12 +32,21 @@
         <div class="container">
             <h1>Welcome to Blackjack Helper!</h1>
             <h2>Please verify your age before entering...Must be 18+</h2>
-        <form action="/validate_age" method="POST">
+            {% if messages %}
+            <div id="errors">
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            <form action="/validate_age" method="POST">
             {% csrf_token %}
             <label for="age">Date of Birth:</label>
             <input type="date" id="age" name='age'>
             <input type="submit" value="Verify">
-        </form>
+            </form>
         </div>
     </div>
 

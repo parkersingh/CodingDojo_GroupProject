@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.contrib import messages
 from .models import Blackjack
 from datetime import datetime, date
 
@@ -18,9 +19,11 @@ def validate_age(request):
     user_dob = datetime.strptime(request.POST['age'], '%Y-%m-%d')
     age = today.year - user_dob.year - ((today.month, today.day) < (user_dob.month, user_dob.year))
     if age >= 18:
-        return HttpResponse('18 or over')
+        return redirect('/index')
     else:
-        return HttpResponse('Under 18')
+        error = 'Age entered is not 18 or over'
+        messages.error(request, error)
+        return redirect('/')
 
 def game(request):
     context={
