@@ -82,3 +82,17 @@ def stand(request):
         else:
             return HttpResponse('Player Wins!')
     return redirect('/game')
+
+# def stand_parker(request):
+#     current_game = Blackjack.objects.last()
+#     if current_game.user_sum() > 21:
+#         return HttpResponse('You busted. CPU Wins!')
+#     else:
+#         while current_game.comp_sum() < 17:
+#             current_game.comp_hit()
+#         if current_game.user_sum() < current_game.comp_sum():
+#             return HttpResponse('CPU Wins!')
+#         elif current_game.user_sum() == current_game.comp_sum():
+#             return HttpResponse('Tie!')
+#         else:
+#             return HttpResponse('Player Wins!')
