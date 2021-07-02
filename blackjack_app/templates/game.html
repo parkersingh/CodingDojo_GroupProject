@@ -72,6 +72,15 @@
         <h4>Probabilities</h4>
         <p id="d-sum">Computer Sum: {{last_game.comp_sum}}</p>
         <p id="d-sum">Player Sum: {{last_game.user_sum}}</p>
+        {% if messages %}
+            <div id="errors">
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
     </div>
 
     <!--script type="text/javascript" src="{% static 'js/index.js' %}"></script-->

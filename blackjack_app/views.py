@@ -67,19 +67,25 @@ def hit(request):
     if sum < 21:
         current_game.hit()
     if current_game.user_sum() > 21:
-        return HttpResponse('Bust, CPU Wins!')
+        error = 'You busted. CPU Wins!'
+        messages.error(request, error)
     return redirect('/game')
 
 def stand(request):
     current_game = Blackjack.objects.last()
     if current_game.user_sum() > 21:
-        return HttpResponse('You busted. CPU Wins!')
+        error = 'You busted. CPU Wins!'
+        messages.error(request, error)
     else:
         while current_game.comp_sum() < 17:
             current_game.comp_hit()
         if current_game.user_sum() < current_game.comp_sum() and current_game.comp_sum() <= 21:
-            return HttpResponse('CPU Wins!')
+            error = 'CPU Wins!'
+            messages.error(request, error)
         elif current_game.user_sum() == current_game.comp_sum():
-            return HttpResponse('Tie!')
+            error = 'Tie!'
+            messages.error(request, error)
         else:
-            return HttpResponse('Player Wins!')
+            error = 'Player Wins!'
+            messages.error(request, error)
+    return redirect('/game')
